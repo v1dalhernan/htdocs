@@ -18,9 +18,9 @@ html, body {
 </head>
 <body>
 <header>
-		<?php require_once('../Layouts/menu.php'); ?>
+		<?php require('view/Layouts/menu.php'); ?>
 	</header>
 
-  <?php require_once('../Home/index.php'); ?>
+  <?php require('view/Home/index.php'); ?>
 
 </body>

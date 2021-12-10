@@ -28,28 +28,28 @@ html, body {
     <h2> Ingrese los datos para registarse a SIGMED </h2></p></p></h1>
   </section> 
 
-<form action="" method="POST">
+<form action="guardado_exitoso.php" method="POST">
   <section id="C" style="width: 60%; height: 45%; float: right; text-overflow: inherit;  margin-top: 0%;">
     <div style="padding: 0% 15% 10% 15%;"></p></p>
-      <div class="cedula" style=" height:8%;" >
+      <div class="cedu" style=" height:8%;" >
         <label for="IDdeUsuario" class="form-label">No° de Cédula/Pasaporte</label>
-        <input type="cedula" class="form-control" id="IDdeUsuario" name="cedula">  
+        <input type="text" class="form-control" id="cedula" name="cedula">  
       </div>
-      <div class="nombre" style=" height:8%;" >
+      <div class="nom" style=" height:8%;" >
         <label for="Nom" class="form-label">Nombre</label>
-        <input type="nombre" class="form-control" id="Nom" name="nombre">  
+        <input type="text" class="form-control" id="nombre" name="nombre">  
       </div>
-      <div class="apellido" style=" height:8%;" >
+      <div class="apel" style=" height:8%;" >
         <label for="Apel" class="form-label">Apellido</label>
-        <input type="apell" class="form-control" id="Apel" name="apellido">  
+        <input type="text" class="form-control" id="apellido" name="apellido">  
       </div>
-      <div class="email" style=" height:8%;" >
+      <div class="emai" style=" height:8%;" >
         <label for="exampleInputEmail1" class="form-label">Correo Electrónico</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" name="email">  
+        <input type="email" class="form-control" id="correo" name="correo">  
       </div>
       <div class="passwd" style=" height:8%;" >
         <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" name="passwd">
+        <input type="password" class="form-control" id="contrasenna" name="contrasenna">
       </div><p></p>
       <div class="d-grid gap-2">
         <input type="submit" class="btn btn-primary" value="Registrarse">
@@ -58,7 +58,7 @@ html, body {
 </form>
 
 <section id="D" style="width: 60%; height: 10%; text-align: center; float: right; text-overflow: inherit;">
-  <a href="../../../index.html">¿Ya tiene cuenta? Inicie sesión </a>
+  <a href="index.html">¿Ya tiene cuenta? Inicie sesión </a>
   <style>  {  text-align: center; text-decoration-line: underline; float: left; }    </style>
   </section> 
 

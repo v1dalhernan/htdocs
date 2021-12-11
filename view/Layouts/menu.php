@@ -13,13 +13,7 @@
                   <a class="nav-link" aria-current="page" href="crear_cita_1.php">Agendar</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Policlínica</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Médico</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="MisCitas.php">Mis Citas</a>
+                    <a class="nav-link" href="mis_citas.php">Mis Citas</a>
                   </li>
             
               </ul>

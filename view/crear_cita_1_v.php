@@ -9,7 +9,7 @@
 <body>
 
 <form action="crear_cita_2.php" method="post">
-<h1>elige una especialidad</h1>
+<h1>elige una policlinica</h1>
 
     <label for="cars">elige 1:</label>
 

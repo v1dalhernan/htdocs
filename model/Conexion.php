@@ -165,217 +165,173 @@ class Conexion{
                         $i++;
                     }
                 }
-                var_dump($resultado);
                 return $resultado;
             }
 
-    /*         
-    public function Guardar_Proyectos($fecha,$proponente,$tipo_proyecto,$nombre,$objetivo,$descripcion,$nivel_proyecto,$modalidad,$lugar_actividad,$descripcion_lugar,$perfil_estudiante,$cantidad_es,$total_horas){
-        Se guarda la informacion del formulario a la tabla de proyectos por medio de un procedimiento insert de mySQL
-        El estado del proyecto es pendiente por aprobacion por defecto por eso no se pide
-        $estado = 'pendiente por aprobacion';
-        $sql = "call insertar_proyectos('$fecha','$proponente','$tipo_proyecto','$nombre','$objetivo','$descripcion','$nivel_proyecto','$modalidad','$lugar_actividad','$descripcion_lugar','$perfil_estudiante',$cantidad_es,$total_horas,'$estado');";
-               
-        if ($this->conn->query($sql)){
-         return true;
-        } else{
-         return false;
-     }
- 
-     }
- 
-     public function Guardar_Responsables($nombre,$apellido,$cedula,$telefono_of,$telefono_mov){
-       // Se guarda la informacion del formulario a la tabla de responsable por medio de un procedimiento insert de mySQL
-         $sql = "CALL insertar_responsables('$nombre','$apellido','$cedula','$telefono_of','$telefono_mov');";
-         if ($this->conn->query($sql)){
-             return true;
-            } else{
-             return false;
-         }
- 
-     }
- 
-     public function Guardar_Supervisores($nombre,$apellido,$cedula,$telefono_of,$telelfono_mov){
-         // Se guarda la informacion del formulario a la tabla de supervisor
-         $sql = "call insertar_supervisores('$nombre','$apellido','$cedula','$telefono_of','$telelfono_mov');";
-         if ($this->conn->query($sql)){
-             return true;
-            }     else{
-             return false;
-         }
-     }
- 
-     public function Guardar_facul_proyectos($id_facultad){
-        // Se guarda la informacion del formulario a la tabla de facul_proyectos por medio de un procedimiento insert de mySQL
-         $sql = "call insertar_facul_proyectos($id_facultad);";
-         if ($this->conn->query($sql)){
-             return true;
-            } else{
-             return false;
-         }
- 
-         
-     }
- 
-     public function Guardar_Actividades($n_actividad,$nombre,$tiempo){
-         // Se guarda la informacion del formulario en la tabla de actividades por medio de un procedimiento insert de mySQL
-         $sql = "call insertar_actividades($n_actividad,'$nombre',$tiempo);";
-         if ($this->conn->query($sql)){
-             return true;
-            } else{
-             return false;
-         }
- 
-         
-     }
- 
-     public function Guardar_Participantes($nombre,$cedula,$apellido,$telefono_m,$telefono_r){
-         //Se guarda la informacion del formulario en la table de participantes por medio de un procedimiento insert de mySQL
-         $sql = "call insertar_participates('$nombre','$cedula','$apellido','$telefono_m','$telefono_r');";
-         if ($this->conn->query($sql)){
-             return true;
-            } else{
-                return false;
-            }
- 
-         
-     }
-     public function Recuperar_Proyectos($id){
-         //Utilizando una variable que proviene de una interaccion del usuario con la interfaz del sistema se extrae la data de la tabla proyevtos
-         $id_proy = (int)$id;
-         $sql = "SELECT * FROM proyectos where id_proyectos = $id_proy; ";
-         $query = $this->conn->query($sql);
-         $datosProy = [];
-         $i=0;
-             while($row = $query->fetch_assoc()){
-                 $datosProy[$i]=$row;
-                 $i++;
-             }
+            public function recuperarEspecialidadesFase2($id){
             
-             return $datosProy;
-         }
-     
- 
+                $idCorregido  = (int)$id;
     
-         public function Recuperar_Responsables($id){
-          //Utilizando una variable que proviene de una interaccion del usuario con la interfaz del sistema se extrae la data de la tabla responsables
-         $sql = "SELECT id_responsable FROM proyectos where id_proyectos = $id; ";
-         $query = $this->conn->query($sql);
-         $datosResp = [];
-         $datos = [];
-         $i=0;
-             while($row = $query->fetch_assoc()){
-                 $datosResp[$i]=$row;
-                 $i++;
-             }
-             $entrada = $datosResp[0]['id_responsable'];
-         $sql2 = "SELECT * FROM responsables where id_res = $entrada; ";
-         $query = $this->conn->query($sql2);
-         $i=0;
-             while($row2 = $query->fetch_assoc()){
-                 $datos[$i]=$row2;
-                 $i++;
-             }    
-         return $datos;  
-     }
- 
-     public function Recuperar_Supervisores($id){
-         //Utilizando una variable que proviene de una interaccion del usuario con la interfaz del sistema se extrae la data de la tabla supervisores
-         $sql = "SELECT id_supervisor FROM proyectos where id_proyectos = $id; ";
-         $query = $this->conn->query($sql);
-         $datosSuper = [];
-         $datos = [];
-         $i=0;
-             while($row = $query->fetch_assoc()){
-                 $datosSuper[$i]=$row;
-                 $i++;
-             }
-             $entrada = $datosSuper[0]['id_supervisor'];
-         $sql2 = "SELECT * FROM supervisores where id_super = $entrada; ";
-         $query = $this->conn->query($sql2);
-         $i=0;
-             while($row2 = $query->fetch_assoc()){
-                 $datos[$i]=$row2;
-                 $i++;
-             }    
-         return $datos;
-     }
- 
-     public function Recuperar_facul_proyectos($id){
-         //Utilizando una variable que proviene de una interaccion del usuario con la interfaz del sistema se extrae la data de la tabla facul_proyectos
-         $sql = "SELECT * FROM facul_proyectos where id_proyectos =  $id;";
-         $query = $this->conn->query($sql);
-         $datosFacuProy = [];
-         $i=0;
-             while($row = $query->fetch_assoc()){
-                 $datosFacuProy[$i]=$row;
-                 $i++;
-             }
-         return $datosFacuProy;
-     }
- 
-     public function Recuperar_Actividades($id){
-         //Utilizando una variable que proviene de una interaccion del usuario con la interfaz del sistema se extrae la data de la tabla actividades
-         $sql = "SELECT * FROM actividades where id_proyectos = $id; ";
-         $query = $this->conn->query($sql);
-         $datosActiv = [];
-         $i=0;
-        
-             while($row = $query->fetch_assoc()){
-                 $datosActiv[$i]=$row;
-                 $i++;
-             }
-         return $datosActiv;
-     }
- 
-     public function Recuperar_Participantes($id){
-         //Utilizando una variable que proviene de una interaccion del usuario con la interfaz del sistema se extrae la data de la tabla participantes
-         $sql = "SELECT * FROM participantes where id_proyectos = $id; ";
-         $query = $this->conn->query($sql);
-         $datosParti = [];
-         $i=0;
-             while($row = $query->fetch_assoc()){
-                 $datosParti[$i]=$row;
-                 $i++;
-             }
-         
-         return $datosParti;
-     }
- 
-     public function Recuperar_lista_proyectos(){
-         //Se extraen datos de la tabla proyectos por medio de una procecedimiento view de mySQL
-         $sql = "SELECT * FROM lista_proyectos";
-         $query = $this->conn->query($sql);
-         $resultado = [];
-         $i=0;
-         while ( $fila = $query->fetch_assoc()) { 
-             $resultado[$i] = $fila;
-             $i++;
-         }
-         return $resultado;
-     }
-     public function Recuperar_lista_proyectosp2(){
-          //Se extraen datos de la tabla proyectos por medio de una procecedimiento view de mySQL
-         $sql = "SELECT * FROM lista_proyectos_user";
-         $query = $this->conn->query($sql);
-         $resultado = [];
-         $i=0;
-         while ( $fila = $query->fetch_assoc()) { 
-             $resultado[$i] = $fila;
-             $i++;
-         }
-         return $resultado;
-     }
-     public function Modificar_Estado($id,$cambio){
-         // Por medio de la interfaz el usuario realiza un UPDATE a la tabla de proyectos sobre un proyecto existente
-         $sql = "UPDATE proyectos SET estado = '$cambio' WHERE id_proyectos = $id;";
-         if ($this->conn->query($sql)){
-             return true;
+                $sql = "SELECT * FROM  especialidad WHERE id = $idCorregido;";
+                $query = $this->conn->query($sql);
+                $especialidad = [];
+                $i=0;
+                    while($row = $query->fetch_assoc()){
+                        $especialidad[$i]=$row;
+                        $i++;
+                    }
+                   
+                    return $especialidad;
+                }
+
+            public function obtenerMedico($id_especialidad,$id_policlinica){
+                $idCorregido  = (int)$id_especialidad;
+                $idCorregido2  = (int)$id_policlinica;
+
+                $sql = "SELECT * FROM  medico WHERE id_especialidad = $idCorregido and id_policlinica = $idCorregido2;";
+                $query = $this->conn->query($sql);
+                $medico = [];
+                $i=0;
+                    while($row = $query->fetch_assoc()){
+                        $medico[$i]=$row;
+                        $i++;
+                    }
+                   
+                    return $medico;
             }
-     
-     }  
+
+            public function obtenerMedicoFase2($id){
+                $idCorregido  = (int)$id;
     
-    */
+                $sql = "SELECT * FROM  medico WHERE id = $idCorregido;";
+                $query = $this->conn->query($sql);
+                $medico = [];
+                $i=0;
+                    while($row = $query->fetch_assoc()){
+                        $medico[$i]=$row;
+                        $i++;
+                    }
+                   
+                    return $medico;
+            }
+            public function obtenerHorarios(){
+                $sql = "SELECT * FROM  horario;";
+                $query = $this->conn->query($sql);
+                $horario = [];
+                $i=0;
+                    while($row = $query->fetch_assoc()){
+                        $horario[$i]=$row;
+                        $i++;
+                    }
+                   
+                    return $horario;
+            }
+
+            public function obtenerIdPaciente($id){
+                $id_arreglado = (int)$id;
+                $sql = "SELECT * FROM paciente WHERE id_usuario = $id_arreglado";
+        
+                $query = $this->conn->query($sql);
+                 $dato = [];
+                 $respuesta = "";
+                 $i=0;
+                     while($row = $query->fetch_assoc()){
+                         $dato[$i]=$row;
+                         $i++;
+                     }
+                
+             
+                $respuesta = $dato[0]["id"];
+        
+                     
+                return $respuesta;
+            }
+
+            public function guardarCita($fecha,$id_medico,$id_paciente,$id_horario){
+
+
+                $estado = 1;
+                $rid_medico = (int)$id_medico;
+                $rid_paciente = (int)$id_paciente;
+                $rid_horario = (int)$id_horario;       
+                $sql = "INSERT INTO citas VALUES (NULL,'$fecha',$estado,$rid_medico,$rid_paciente,$rid_horario);";
+
+                if ($this->conn->query($sql)){ 
+                    return true;
+                } else{
+                    return false;
+                }
+
+            }
+            public function obtenerEmailPaciente($id){
+                $id_arreglado = (int)$id;
+                $sql = "SELECT * FROM usuario WHERE id = $id_arreglado";
+        
+                $query = $this->conn->query($sql);
+                 $dato = [];
+                 $respuesta = "";
+                 $i=0;
+                     while($row = $query->fetch_assoc()){
+                         $dato[$i]=$row;
+                         $i++;
+                     }
+                
+             
+                $respuesta = $dato[0]["email"];
+        
+                     
+                return $respuesta;
+            }
+
+            public function obtenerCitas($id_paciente){
+                $id_arreglado = (int)$id_paciente;
+                $sql = "SELECT * FROM citas WHERE id_paciente = $id_arreglado";
+        
+                $query = $this->conn->query($sql);
+                 $dato = [];
+                 
+                 $i=0;
+                     while($row = $query->fetch_assoc()){
+                         $dato[$i]=$row;
+                         $i++;
+                     }     
+                return $dato;
+            }
+            public function obtenerNombreMedico($id_medico){
+                $id_arreglado = (int)$id_medico;
+                $sql = "SELECT nombre FROM medico WHERE id = $id_arreglado";
+                $query = $this->conn->query($sql);
+                 $dato = [];
+                 
+                 $i=0;
+                     while($row = $query->fetch_assoc()){
+                         $dato[$i]=$row;
+                         $i++;
+                     }     
+
+                $resultado = $dato[0]['nombre'];
+                return $resultado;
+
+            }
+            public function obtenerNombreHora($id_hora){
+                $id_arreglado = (int)$id_hora;
+                $sql = "SELECT franja_horaria FROM horario WHERE id = $id_hora";
+                $query = $this->conn->query($sql);
+                 $dato = [];
+                 
+                 $i=0;
+                     while($row = $query->fetch_assoc()){
+                         $dato[$i]=$row;
+                         $i++;
+                     }     
+
+                $resultado = $dato[0]['franja_horaria'];
+                return $resultado;
+
+            }
+
+            
+    
 
     
     public function __destruct(){

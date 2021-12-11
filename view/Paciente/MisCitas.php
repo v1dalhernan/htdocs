@@ -18,7 +18,7 @@ html, body {
 </head>
 <body>
 <header>
-		<?php require_once('../Layouts/menu.php'); ?>
+		<?php require_once('view/Layouts/menu.php'); ?>
 	</header>
 
 <div style="display: table; width:100%;  height:15%;" >
@@ -38,25 +38,41 @@ html, body {
     <table class="table table-hover" >
     <thead>
         <tr>
+        <th >id</th>
         <th >Fecha</th>
-        <th >Hora</th>
-        <th >Policlínica</th>
-        <th >Médico</th>
+        <th >medico</th>
+        <th >hora</th>
         <th ></th>
         <th ></th>
         </tr>
     </thead>
     <tbody>
+      <form action="/editar" method="post">
+      <?php 
+      foreach($citas as $cita){
+        $medico = $con->obtenerNombreMedico($cita["id_medico"]);
+        $hora = $con->obtenerNombreHora($cita["id_horario"]);
+        echo('
         <tr>
-        <th>xxx-xx-xx</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
+        <td> <input type="text"  name="id" id="df"  readonly value="'.$cita['id'].'"></td>
+        <th>'.$cita["fecha"].'</th>
+        <th>'.$medico.'</th>
+        <td>'.$hora.'</td>
+    
         <td><button type="button" class="btn btn-primary btn-sm">Reprogramar</button></td>
         <td><button type="button" class="btn btn-danger btn-sm">Eliminar</button></td>
         </tr>
+      
+      ');
+      
+      }
+      ?>
+       </form>
+        
     </tbody>
     </table>
 </div>
 
 </body>
+
+
